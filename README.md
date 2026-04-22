@@ -57,5 +57,5 @@ Make sure you have [Node.js](https://nodejs.org/) installed on your machine.
 
 4. Open your browser and navigate to the address shown in your terminal (typically `http://localhost:5173/`).
 
-## 🎨 Design Philosophy
+## 🎨 Design Philosophy 
 MaxxArena focuses heavily on visual engagement and aesthetic excellence. By mixing vibrant colors, smooth transitions, glassmorphism UI traits, and premium micro-animations, the application engages the user continuously, turning a simple typing practice task into a delightful gaming-like experience.
