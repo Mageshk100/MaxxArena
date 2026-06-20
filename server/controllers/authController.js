@@ -114,7 +114,7 @@ exports.loginUser = async (req, res) => {
     res.cookie('jwt', refreshToken, {
       httpOnly: true, 
       secure: process.env.NODE_ENV === 'production', // Must be false for localhost dev
-      sameSite: 'strict', // Prevents Cross-Site Request Forgery (CSRF)
+      sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax', // Must be 'none' for cross-domain cookies in prod
       maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days literal milliseconds
     });
 
@@ -163,6 +163,8 @@ exports.logoutUser = (req, res) => {
   // Clear the secure HTTP-only cookie by setting its expiration to the past
   res.cookie('jwt', '', {
     httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
     expires: new Date(0), 
   });
   
@@ -180,7 +182,7 @@ exports.googleOAuthCallback = (req, res) => {
   res.cookie('jwt', refreshToken, {
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production',
-    sameSite: 'strict',
+    sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
     maxAge: 7 * 24 * 60 * 60 * 1000, 
   });
 
